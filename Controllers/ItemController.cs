@@ -7,7 +7,7 @@ namespace ReactHello.Controllers
     [Route("[controller]")]
     public class ItemController : ControllerBase 
     {
-        private static readonly IEnumerable<ItemModel> items = new[]
+        private static readonly IEnumerable<ItemModel> itemsDatabase = new[]
         {
             new ItemModel{Id =1, Title = "The Godfather", ImageId=1, Ranking=0,ItemType=1 },
             new ItemModel{Id =2, Title = "Highlander", ImageId=2, Ranking=0,ItemType=1 },
@@ -30,5 +30,10 @@ namespace ReactHello.Controllers
             new ItemModel{Id = 19, Title = "St. Anger", ImageId=19, Ranking=0,ItemType=2 },
             new ItemModel{Id = 20, Title = "The Final Countdown", ImageId=20, Ranking=0,ItemType=2 }
         };
+
+        public ItemModel[] Get(int selectedItemType){
+            ItemModel[] returnedItems = itemsDatabase.Where(i => i.ItemType == selectedItemType).ToArray();
+            return returnedItems;
+        }
     }
 }
