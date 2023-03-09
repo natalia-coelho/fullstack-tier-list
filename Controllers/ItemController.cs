@@ -31,6 +31,7 @@ namespace ReactHello.Controllers
             new ItemModel{Id = 20, Title = "The Final Countdown", ImageId=20, Ranking=0,ItemType=2 }
         };
 
+        [HttpGet("{itemType:int}")]
         public ItemModel[] Get(int selectedItemType){
             ItemModel[] returnedItems = itemsDatabase.Where(i => i.ItemType == selectedItemType).ToArray();
             return returnedItems;
